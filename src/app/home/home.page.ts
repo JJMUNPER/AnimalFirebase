@@ -10,18 +10,21 @@ import { FirestoreService } from '../firestore.service';
 export class HomePage {
 
   animalEditando: Animal;
+  idAnimalSelec: string;
 
   arrayColeccionAnimales:any =[{
     id: "",
     data: {} as Animal
   }];
 
-
+  //Constructor
   constructor(private firestoreService: FirestoreService) {
     //Crea un animal vacio al empezar
     this.animalEditando = {} as Animal;
     this.obtenerListaAnimales();
   }
+
+  
 
   clicBotonInsertar(){
 
@@ -33,7 +36,16 @@ export class HomePage {
     }, (error)=>{
       console.error(error);
     });
+  }
 
+  clicBotonBorrar() {
+
+    this.firestoreService.borrar("animales", this.idAnimalSelec).then(() =>{
+      //Actualiza la lista completa
+      this.obtenerListaAnimales();
+      //Limpiar datos de pantalla
+      this.animalEditando = {} as Animal;
+    })
   }
 
   obtenerListaAnimales(){
@@ -46,6 +58,14 @@ export class HomePage {
         });
       })
     });
+  }
+
+  selecAnimal(animalSelec){
+    console.log("Animal seleccionado: ");
+    console.log(animalSelec);
+    this.idAnimalSelec = animalSelec.id;
+    this.animalEditando.titulo=animalSelec.data.titulo;
+    this.animalEditando.descripcion=animalSelec.data.descripcion;
   }
 
 }
