@@ -48,6 +48,13 @@ export class HomePage {
     })
   }
 
+  clicBotonModificar(){
+    this.firestoreService.actualizar("animales", this.idAnimalSelec, this.animalEditando).then(() =>{
+      this.obtenerListaAnimales();
+      this.animalEditando ={} as Animal;
+    })
+  }
+
   obtenerListaAnimales(){
     this.firestoreService.consultar("animales").subscribe((resultadoConsultaAnimales) =>{
       this.arrayColeccionAnimales=[];

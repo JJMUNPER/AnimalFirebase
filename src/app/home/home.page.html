@@ -12,6 +12,7 @@
 <ion-list>
   <ion-item *ngFor="let documentAnimal of arrayColeccionAnimales" (click)="selecAnimal(documentAnimal)">
     <ion-grid>
+      
       <ion-row>
         <h2>{{documentAnimal.data.titulo}}</h2>
       </ion-row>
@@ -20,20 +21,21 @@
       </ion-row>
     </ion-grid>
   </ion-item>
+  <ion-item>
+    <ion-label>Titulo</ion-label>
+    <ion-input [(ngModel)]="animalEditando.titulo"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>Descripción</ion-label>
+    <ion-input [(ngModel)]="animalEditando.descripcion"></ion-input>
+  </ion-item>
 
 </ion-list>
   <ion-button (click)="clicBotonInsertar()">Añadir animal</ion-button>
   <ion-button (click)="clicBotonBorrar()">Borrar animal</ion-button>
+  <ion-button (click)="clicBotonModificar()">Modificar animal</ion-button>
   
 </ion-content>
 
 
-<!-- <ion-item>
-  <ion-label>Titulo</ion-label>
-  <ion-input [(ngModel)]="animalEditando.titulo"></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-label>Descripción</ion-label>
-  <ion-input [(ngModel)]="animalEditando.descripcion"></ion-input>
-</ion-item> -->
